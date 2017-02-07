@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Theme CSS -->
+	    <link href="/bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+	    <!-- Custom Fonts -->
+	    <link href="/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+		<title>Sign Up</title>
+
+		<style>
+		body {
+	      	background-color: #f9fafc;
+		    padding-top: 15px;
+		    font-size: 12px
+		  }
+		  .main {
+		    max-width: 320px;
+		    margin: 0 auto;
+		  }
+
+		  h3 {
+		    text-align: center;
+		    line-height: 300%;
+		  }
+
+		  a {
+		  	color:#316dce;
+		  }
+
+		  span {
+		  	text-align: center;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+			    <div class="main">
+					<h3>Sign up, or <a href="{{'/login'}}">Log In</a></h3>
+					<form method="post">
+					<div class="form-group">
+					  <label>Username</label>
+					  <input type="text" class="form-control" name="username" id="inputUsername">
+					  <br>
+					  <span style="color:red">{{username_error}}</span>
+					</div>
+					<div class="form-group">
+					  <label>Password</label>
+					  <input type="password" class="form-control" name="password" id="inputPassword">
+					  <span style="color:red">{{password_error}}</span>
+					</div>
+					<div class="form-group">
+					  <label>Verify Password</label>
+					  <input type="password" class="form-control" name="verify_pass" id="inputPasswordVerify">
+					  <span style="color:red">{{verify_error}}</span>
+					</div>
+					<div class="form-group">
+					  <label>Email Address</label>
+					  <input type="text" class="form-control" name="email" id="inputEmail">
+					  <span style="color:red">{{email_error}}</span>
+					</div>
+					<button type="submit" class="btn btn btn-primary">
+					  Create an account
+					</button>
+					</form>
+					<br>
+					<span style="color:red">{{user_exists_error}}</span>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

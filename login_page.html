@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	    <!-- Theme CSS -->
+	    <link href="/bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+	    <!-- Custom Fonts -->
+	    <link href="/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+	    <style>
+	      body {
+	      	background-color: #f9fafc;
+		    padding-top: 15px;
+		    font-size: 12px
+		  }
+		  
+		  .main {
+		    max-width: 320px;
+		    margin: 0 auto;
+		  }
+
+		  h3 {
+		    text-align: center;
+		    line-height: 300%;
+		  }
+
+		  a {
+		  	color:#316dce;
+		  }
+
+		  span {
+		  	text-align: center;
+		  }
+	    </style>
+		<title>Login</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="main">
+					<h3>Please Log In, or <a href="{{'/register'}}">Sign Up</a></h3>
+					<form method="post">
+						<div class="form-group">
+						  <label>Username</label>
+						  <input type="text" class="form-control" name="username" id="inputUsername">
+						</div>
+						<div class="form-group">
+						  <label>Password</label>
+						  <input type="password" class="form-control" name="password" id="inputPassword">
+						</div>
+						<button type="submit" class="btn btn btn-primary">
+						  Log In
+						</button>
+					</form>
+					<br>
+					<strong><span style="color:red">{{login_error}}</span></strong>
+				</div>
+			</div>  
+		</div>
+	</body>
+</html>

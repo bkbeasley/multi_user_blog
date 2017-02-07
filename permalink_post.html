@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{post.title}}</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/bootstrap/css/clean-blog.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/bootstrap/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <link href="/bootstrap/css/comment_form.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://fontawesome.io/assets/font-awesome/css/font-awesome.css">
+
+    <link href="/bootstrap/css/user_comments.css" rel="stylesheet">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    Menu <i class="fa fa-bars"></i>
+                </button>
+                {% if not username %}
+                <a class="navbar-brand" href="{{'/login'}}">Log in</a>
+                <a class="navbar-brand" href="{{'/register'}}">Sign Up</a>
+                {% else %}
+                <span class="navbar-brand">Logged in as: <br>{{username}}</span>
+                <a class="navbar-brand" href="{{'/logout'}}">Logout</a>
+                {% endif %}
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="{{'/'}}">Home</a>
+                    </li>
+                    <li>
+                        <a href="{{'/submit'}}">Submit Post</a>
+                    </li>
+                    <li>
+                        <a href="{{'/contact'}}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('/bootstrap/img/pom.jpeg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="post-heading">
+                        <h1>{{post.title}}</h1>
+                        <h2 class="subheading">{{post.subtitle}}</h2>
+                        <span class="meta">Posted by {{post.author}} on {{post.created.strftime('%B %d, %Y')}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <article>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <p>{{post.content}}</p>
+                </div>
+            </div>
+        </div>
+    </article>
+    <br>
+    <br>
+    <br>
+
+    <!-- Like Button and Edit Post Button -->
+    <div class="container">
+    	<div class="row">
+    		<div class="col-md-6 col-md-6">
+	    		<form method="post">
+				    <button class="btn btn-primary"><span class="glyphicon glyphicon-thumbs-up"></span> Like <span class="badge">{{post.like_counter}}</span></button>
+				    {% if valid_user %}
+				    <a href="/post/{{post.key().id()}}/edit" class="btn btn-primary btn-primary"><span class="glyphicon glyphicon-pencil"></span> Edit Post</a>
+				    <a href="/post/{{post.key().id()}}/delete" class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span> Delete Post</a>
+			    </form>
+		    </div>
+	    </div>
+    </div>
+    {% endif %}
+
+  <hr>
+	<!-- Comment Form -->
+	<div class="container">
+	    
+	    <div class="row">
+	    
+	    <div class="col-md-6">
+			<div class="widget-area no-padding blank">
+				<div class="status-upload">
+					<form method="post">
+						<textarea name="comment" placeholder="Leave a comment..." cols="40" style="resize:none" ></textarea>
+						<br>
+						
+						<button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Submit</button>
+					</form>
+				</div><!-- Status Upload  -->
+			</div><!-- Widget Area -->
+		</div>
+	        
+	    </div>
+	</div>
+    <hr>
+
+    <!-- Comments From Users -->
+    <div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2 class="page-header">Comments</h2>
+         {% if comments %}
+    {% for comment in comments %}
+        <section class="comment-list">
+          <!-- First Comment -->
+
+          <article class="row">
+            <div class="col-md-2 col-sm-2 hidden-xs">
+              <figure class="thumbnail">
+                <img class="img-responsive" src="http://www.keita-gaming.com/assets/profile/default-avatar-c5d8ec086224cb6fc4e395f4ba3018c2.jpg" />
+                <figcaption class="text-center">{{comment.author}}</figcaption>
+              </figure>
+            </div>
+            <div class="col-md-10 col-sm-10">
+              <div class="panel panel-default arrow left">
+                <div class="panel-body">
+                  <header class="text-left">
+                    <div class="comment-user"><i class="fa fa-user"></i> {{comment.author}}</div>
+                    <time class="comment-date" datetime="16-12-2014 01:05"><i class="fa fa-clock-o"></i> {{comment.created.strftime('%B %d, %Y')}}</time>
+                  </header>
+                  <div class="comment-post">
+                    <p>
+                      {{comment.content}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </section>
+        {% endfor %}
+        {% endif %}
+        </div>
+        </div>
+        </div>
+        
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <ul class="list-inline text-center">
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="copyright text-muted">Copyright &copy; Good Eats Blog 2016</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Theme JavaScript -->
+    <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
