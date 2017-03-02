@@ -1,5 +1,7 @@
-# multi_user_blog
-A multi user food blog that allows users to create, edit, delete, and like blog posts. 
+# Good Eats Blog
+A multi user food blog that allows users to create, edit, delete, and like blog posts.
+
+https://good-eats-blog.appspot.com/
 
 ## Built With
 * Python
